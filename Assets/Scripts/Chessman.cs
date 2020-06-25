@@ -82,7 +82,7 @@ public class Chessman : MonoBehaviour
         y += -2.3f;
 
         //setting position to a vector3, where 3 means 3 dimentional
-        this.transform.positon = new Vector3(x, y, -1.0f);
+        this.transform.position = new Vector3(x, y, -1.0f);
 
 
     }
