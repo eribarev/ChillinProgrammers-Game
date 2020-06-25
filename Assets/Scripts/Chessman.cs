@@ -83,7 +83,25 @@ public class Chessman : MonoBehaviour
 
         //setting position to a vector3, where 3 means 3 dimentional
         this.transform.position = new Vector3(x, y, -1.0f);
+    }
 
+    public int GetXBoard()
+    {
+        return xBoard;
+    }
 
+    public int GetYBoard()
+    {
+        return yBoard;
+    }
+
+    public void SetXBoard(int x)
+    {
+        xBoard = x;
+    }
+
+    public void SetYBoard(int y)
+    {
+        yBoard = y;
     }
 }

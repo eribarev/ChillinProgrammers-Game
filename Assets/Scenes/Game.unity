@@ -214,6 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 935300149}
   - component: {fileID: 935300148}
+  - component: {fileID: 935300150}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -285,6 +286,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &935300150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935300147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2322de44b63d59943b406597a1b00127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  movePlate: {fileID: 0}
+  white_queen: {fileID: 0}
+  white_king: {fileID: 0}
+  white_rook: {fileID: 0}
+  white_knight: {fileID: 0}
+  white_pawn: {fileID: 0}
+  white_bishop: {fileID: 0}
+  black_queen: {fileID: 0}
+  black_king: {fileID: 0}
+  black_rook: {fileID: 0}
+  black_knight: {fileID: 0}
+  black_pawn: {fileID: 0}
+  black_bishop: {fileID: 0}
 --- !u!1 &1085121402
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1085121404}
   - component: {fileID: 1085121403}
+  - component: {fileID: 1085121405}
   m_Layer: 0
   m_Name: Controller
   m_TagString: GameController
@@ -330,3 +358,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1085121405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085121402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2322de44b63d59943b406597a1b00127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  movePlate: {fileID: 0}
+  white_queen: {fileID: 0}
+  white_king: {fileID: 0}
+  white_rook: {fileID: 0}
+  white_knight: {fileID: 0}
+  white_pawn: {fileID: 0}
+  white_bishop: {fileID: 0}
+  black_queen: {fileID: 0}
+  black_king: {fileID: 0}
+  black_rook: {fileID: 0}
+  black_knight: {fileID: 0}
+  black_pawn: {fileID: 0}
+  black_bishop: {fileID: 0}

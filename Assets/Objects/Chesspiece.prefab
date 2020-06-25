@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4342321092528294818}
   - component: {fileID: 3035131160710018112}
-  - component: {fileID: -2056055169012155091}
+  - component: {fileID: -3105729331970394095}
   m_Layer: 0
   m_Name: Chesspiece
   m_TagString: Untagged
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-2056055169012155091
+--- !u!114 &-3105729331970394095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
