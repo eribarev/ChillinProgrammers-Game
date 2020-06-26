@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Security.Permissions;
 using UnityEngine;
 
 public class Chessman : MonoBehaviour
@@ -103,5 +104,67 @@ public class Chessman : MonoBehaviour
     public void SetYBoard(int y)
     {
         yBoard = y;
+    }
+
+    private void OnMouseUp() 
+    {
+        DestroyMovePlates();
+
+        InitiateMovePlates();
+    }
+
+    public void DestroyMovePlates() 
+    {
+        GameObject[] movePlates = GameObject.FindGameObjectWithTag("MovePlate");
+        for (int i = 0; i < movePlates.Length; i++) 
+        {
+            Destroy(movePlates[i]);
+        }
+    }
+
+    public void InitiateMovePlates() 
+    {
+        switch (this.name) 
+        {
+            case "white_queen":
+            case "black_queen":
+                LineMovePlate(1, 0);
+                LineMovePlate(0, 1);
+                LineMovePlate(1, 1);
+                LineMovePlate(-1, 0);
+                LineMovePlate(0, -1);
+                LineMovePlate(-1, -1);
+                LineMovePlate(-1, 1);
+                LineMovePlate(1, -1);
+                break;
+            case "white_knight":
+            case "black_knight":
+                LMovePlate();
+                break;
+            case "white_bishop":
+            case "black_bishop":
+                LineMovePlate(1, 1);
+                LineMovePlate(1, -1);
+                LineMovePlate(-1, 1);
+                LineMovePlate(-1, -1);
+                break;
+            case "white_king":
+            case "black_king":
+                SurroundMovePlate();
+                break;
+            case "white_rook":
+            case "black_rook":
+                LineMovePlate(1, 0);
+                LineMovePlate(0, 1);
+                LineMovePlate(-1, 0);
+                LineMovePlate(0, -1);
+                break;
+            case "white_pawn":
+                PawnMovePlate(xBoard, yBoard + 1);
+                break;
+            case "black_pawn":
+                PawnMovePlate(xBoard, yBoard - 1);
+                break;
+        }
     }
 }

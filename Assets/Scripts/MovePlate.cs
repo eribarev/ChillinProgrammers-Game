@@ -46,6 +46,8 @@ public class MovePlate : MonoBehaviour
         reference.GetComponent<Chessman>().DestroyMovePlates();
     }
 
+
+
     public void SetCoords(int x, int y)
     {
         matrixX = x;
