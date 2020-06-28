@@ -33,40 +33,52 @@ public class Chessman : MonoBehaviour
             //depending on the name we switch to the corresponding sprite
             case "white_queen": 
                 this.GetComponent<SpriteRenderer>().sprite = white_queen;
+                player = "white";
                 break;
             case "white_king":
                 this.GetComponent<SpriteRenderer>().sprite = white_king;
+                player = "white";
                 break;
             case "white_rook":
                 this.GetComponent<SpriteRenderer>().sprite = white_rook;
+                player = "white";
                 break;
             case "white_knight":
                 this.GetComponent<SpriteRenderer>().sprite = white_knight;
+                player = "white";
                 break;
             case "white_pawn":
                 this.GetComponent<SpriteRenderer>().sprite = white_pawn;
+                player = "white";
                 break;
             case "white_bishop":
                 this.GetComponent<SpriteRenderer>().sprite = white_bishop;
+                player = "white";
                 break;
 
             case "black_queen":
                 this.GetComponent<SpriteRenderer>().sprite = black_queen;
+                player = "black";
                 break;
             case "black_king":
                 this.GetComponent<SpriteRenderer>().sprite = black_king;
+                player = "black";
                 break;
             case "black_rook":
                 this.GetComponent<SpriteRenderer>().sprite = black_rook;
+                player = "black";
                 break;
             case "black_knight":
                 this.GetComponent<SpriteRenderer>().sprite = black_knight;
+                player = "black";
                 break;
             case "black_pawn":
                 this.GetComponent<SpriteRenderer>().sprite = black_pawn;
+                player = "black";
                 break;
             case "black_bishop":
                 this.GetComponent<SpriteRenderer>().sprite = black_bishop;
+                player = "black";
                 break;
         }
 	}
@@ -113,12 +125,13 @@ public class Chessman : MonoBehaviour
         InitiateMovePlates();
     }
 
-    public void DestroyMovePlates() 
+    public void DestroyMovePlates()
     {
-        GameObject[] movePlates = GameObject.FindGameObjectWithTag("MovePlate");
-        for (int i = 0; i < movePlates.Length; i++) 
+        //Destroy old MovePlates
+        GameObject[] movePlates = GameObject.FindGameObjectsWithTag("MovePlate");
+        for (int i = 0; i < movePlates.Length; i++)
         {
-            Destroy(movePlates[i]);
+            Destroy(movePlates[i]); //Be careful with this function "Destroy" it is asynchronous
         }
     }
 
@@ -166,5 +179,141 @@ public class Chessman : MonoBehaviour
                 PawnMovePlate(xBoard, yBoard - 1);
                 break;
         }
+    }
+
+    public void LineMovePlate(int xincrement, int yIncrement)
+    {
+        Game sc = controller.GetComponent<Game>();
+
+        int x = xBoard + xincrement;
+        int y = yBoard + yIncrement;
+
+        while(sc.PositionOnBoard(x, y) && sc.GetPosition(x, y) == null)
+        {
+            MovePlateSpawn(x, y);
+            x += xincrement;
+            y += yIncrement;
+        }
+
+        if(sc.PositionOnBoard(x, y) && sc.GetPosition(x, y).GetComponent<Chessman>().player != player)
+        {
+            MovePlateAttackSpawn(x, y);
+        }
+
+    }
+
+    // Knight uses this move
+    public void LMovePlate()
+    {
+        PointMovePlate(xBoard + 1, yBoard + 2);
+        PointMovePlate(xBoard - 1, yBoard + 2);
+        PointMovePlate(xBoard + 2, yBoard + 1);
+        PointMovePlate(xBoard + 2, yBoard - 1);
+        PointMovePlate(xBoard + 1, yBoard - 2);
+        PointMovePlate(xBoard - 1, yBoard - 2);
+        PointMovePlate(xBoard - 2, yBoard + 1);
+        PointMovePlate(xBoard - 2, yBoard - 1);
+    }
+
+    // King uses this move
+    public void SurroundMovePlate()
+    {
+        // goes above
+        PointMovePlate(xBoard, yBoard + 1);
+        // goes below
+        PointMovePlate(xBoard, yBoard - 1);
+
+        PointMovePlate(xBoard - 1, yBoard - 1);
+        PointMovePlate(xBoard - 1, yBoard - 0);
+        PointMovePlate(xBoard - 1, yBoard + 1);
+        PointMovePlate(xBoard + 1, yBoard - 1);
+        PointMovePlate(xBoard + 1, yBoard - 0);
+        PointMovePlate(xBoard + 1, yBoard + 1);
+    }
+
+    public void PointMovePlate(int x, int y)
+    {
+        Game sc = controller.GetComponent<Game>();
+        if (sc.PositionOnBoard(x, y)) 
+        {
+            GameObject cp = sc.GetPosition(x, y);
+
+            if (cp == null)
+            {
+                MovePlateSpawn(x, y);
+            }
+            else if (cp.GetComponent<Chessman>().player != player)
+            {
+                MovePlateAttackSpawn(x, y);
+            }
+        }
+    }
+
+    // Pawn uses this move
+    public void PawnMovePlate(int x, int y)
+    {
+        Game sc = controller.GetComponent<Game>();
+        if (sc.PositionOnBoard(x, y))
+        {
+            if (sc.GetPosition(x, y) == null)
+            {
+                MovePlateSpawn(x, y);
+            }
+
+            if (sc.PositionOnBoard(x + 1, y) && sc.GetPosition(x + 1, y) != null && sc.GetPosition(x + 1, y).GetComponent<Chessman>().player != player)
+            {
+                MovePlateAttackSpawn(x + 1, y);
+            }
+
+            if (sc.PositionOnBoard(x - 1, y) && sc.GetPosition(x - 1, y) != null && sc.GetPosition(x - 1, y).GetComponent<Chessman>().player != player)
+            {
+                MovePlateAttackSpawn(x - 1, y);
+            }
+        }
+    }
+
+    public void MovePlateSpawn(int matrixX, int matrixY)
+    {
+        //Get the board value in order to convert to xy coords
+        float x = matrixX;
+        float y = matrixY;
+
+        //Adjust by variable offset
+        x *= 0.66f;
+        y *= 0.66f;
+
+        //Add constants (pos 0,0)
+        x += -2.3f;
+        y += -2.3f;
+
+        //Set actual unity values
+        GameObject mp = Instantiate(movePlate, new Vector3(x, y, -3.0f), Quaternion.identity);
+
+        MovePlate mpScript = mp.GetComponent<MovePlate>();
+        mpScript.SetReference(gameObject);
+        mpScript.SetCoords(matrixX, matrixY);
+    }
+
+    public void MovePlateAttackSpawn(int matrixX, int matrixY)
+    {
+        //Get the board value in order to convert to xy coords
+        float x = matrixX;
+        float y = matrixY;
+
+        //Adjust by variable offset
+        x *= 0.66f;
+        y *= 0.66f;
+
+        //Add constants (pos 0,0)
+        x += -2.3f;
+        y += -2.3f;
+
+        //Set actual unity values
+        GameObject mp = Instantiate(movePlate, new Vector3(x, y, -3.0f), Quaternion.identity);
+
+        MovePlate mpScript = mp.GetComponent<MovePlate>();
+        mpScript.attack = true;
+        mpScript.SetReference(gameObject);
+        mpScript.SetCoords(matrixX, matrixY);
     }
 }
