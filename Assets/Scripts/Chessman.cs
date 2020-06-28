@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Security.Permissions;
 using UnityEngine;
 
@@ -120,9 +121,12 @@ public class Chessman : MonoBehaviour
 
     private void OnMouseUp() 
     {
-        DestroyMovePlates();
+        if (!controller.GetComponent<Game>().IsGameOver() && controller.GetComponent<Game>().GetCurrentPlayer() == player)
+        {
+            DestroyMovePlates();
 
-        InitiateMovePlates();
+            InitiateMovePlates();
+        }
     }
 
     public void DestroyMovePlates()
