@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 359.994}
   m_AnchorMin: {x: 0.252, y: 0.805195}
   m_AnchorMax: {x: 0.75500005, y: 0.9283899}
-  m_AnchoredPosition: {x: -0.33009338, y: 0.23007202}
+  m_AnchoredPosition: {x: -0.33007812, y: 0.23046875}
   m_SizeDelta: {x: 0.94000006, y: -1.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &470489119
@@ -234,7 +234,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.10588233, g: 0.61398077, b: 0.98039216, a: 0}
+  m_BackGroundColor: {r: 0.6886792, g: 0.65944284, b: 0.65944284, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -495,7 +495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 359.994}
   m_AnchorMin: {x: 0.252, y: 0.049000002}
   m_AnchorMax: {x: 0.75500005, y: 0.16980506}
-  m_AnchoredPosition: {x: -0.3999939, y: -0.3999939}
+  m_AnchoredPosition: {x: -0.4000244, y: -0.3984375}
   m_SizeDelta: {x: 0.9000015, y: -0.2000122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1101158762
@@ -679,7 +679,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
